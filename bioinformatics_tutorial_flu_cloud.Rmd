@@ -51,8 +51,8 @@ library(ggmsa)
 
 # We will now create variables for the names of the sequence and metadata in
 # your computer so R can find this later.
-fasta_file <- "BVBRC_genome_sequence.fasta"
-metadata_file <- "BVBRC_genome.csv"
+fasta_file <- "data/BVBRC_genome_sequence.fasta"
+metadata_file <- "data/BVBRC_genome.csv"
 
 # Now that we have those variables we can load the data as follows:
 sequences <- readDNAStringSet(fasta_file)
@@ -147,10 +147,10 @@ alignment_clean
 
 # Let's visualize this a bit more nicely. This is a lot of data so this may take a few minutes!
 
-png("alignment.png", 
-    width = 2000, height = 6000)
+#png("alignment.png", 
+#    width = 2000, height = 6000) # optional to create a .png file for this figure
 ggmsa(alignment_clean, 300, 350, color = "Clustal", font = "DroidSansMono", char_width = 0.5, seq_name = TRUE )
-dev.off()
+#dev.off()
 
 ```
 ## Relationships of Influenza Strains
@@ -177,12 +177,12 @@ colnames(metadata_df)
 # You can change the color to a different pallet by changing the "Set3" to a different colorbrewer set. to see the options type
 display.brewer.all()
 
-png("tree.png", 
-    width = 2000, height = 2000)
+# png("tree.png", 
+#    width = 2000, height = 2000) # optional to create a .png file for this figure
 ggtree(phylo_tree) %<+% metadata_df +
   geom_tiplab(aes(color=Isolation_Country)) +
   scale_color_brewer(palette = "Set2") 
-dev.off()
+# dev.off()
 
 # Try different variables. Do any of them seem to explain the groupings?
 # Which group is the most diverged (ie. has the longest branch) from the other groups? What do you think that means?
